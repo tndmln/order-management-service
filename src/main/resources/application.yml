@@ -21,7 +21,7 @@ server:
     port: ${PORT:8080}
 
 jwt:
-    secret: ${JWT_SECRET:THIS_IS_A_VERY_LONG_SECRET_KEY_AT_LEAST_256_BITS}
+    secret: f52be42ac5950835ce3cb3d249e8ccb62710350798755b55e15d0215ba4115cc
     access-token:
         expiration-ms: 900000
     refresh-token:
