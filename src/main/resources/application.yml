@@ -18,7 +18,10 @@ spring:
                 dialect: org.hibernate.dialect.PostgreSQLDialect
 
 server:
-    port: ${PORT:8080}
+    port: ${PORT:8080} #deploy by railway.com
+    #port: 8080 #local
+    forward-headers-strategy: framework
+springdoc.swagger-ui.try-it-out-enabled: true
 
 jwt:
     secret: f52be42ac5950835ce3cb3d249e8ccb62710350798755b55e15d0215ba4115cc
