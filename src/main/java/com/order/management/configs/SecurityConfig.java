@@ -43,9 +43,14 @@ public class SecurityConfig {
 			config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 			config.setAllowedHeaders(Arrays.asList("*"));
 			return config;
-		})).csrf(csrf -> csrf.disable()).authorizeHttpRequests(auth -> auth
-				.requestMatchers("/api/auth/**", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/webjars/**")
-				.permitAll().anyRequest().authenticated());
+		})).csrf(csrf -> csrf.disable()).authorizeHttpRequests(auth -> auth.requestMatchers("/", // root path publik
+				"/api/auth/**", // auth endpoint publik
+				"/v3/api-docs/**", // swagger docs publik
+				"/swagger-ui/**", // swagger ui publik
+				"/swagger-ui.html", // swagger html publik
+				"/webjars/**" // swagger resources
+		).permitAll().anyRequest().authenticated() // endpoint lain butuh login
+		);
 
 		return http.build();
 	}
