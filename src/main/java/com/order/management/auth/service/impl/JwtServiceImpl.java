@@ -29,13 +29,9 @@ public class JwtServiceImpl implements JwtService {
 	@Value("${jwt.refresh-token.expiration-ms}")
 	private long refreshTokenExpirationMs;
 
-	/* ===================== KEY ===================== */
-
 	private SecretKey getSigningKey() {
 		return Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
 	}
-
-	/* ===================== GENERATE ===================== */
 
 	@Override
 	public String generateAccessToken(User user) {
@@ -53,8 +49,6 @@ public class JwtServiceImpl implements JwtService {
 				.expiration(Date.from(now.plusMillis(refreshTokenExpirationMs))).signWith(getSigningKey()).compact();
 	}
 
-	/* ===================== VALIDATE ===================== */
-
 	@Override
 	public Boolean validateToken(String token) {
 		try {
@@ -64,8 +58,6 @@ public class JwtServiceImpl implements JwtService {
 			return false;
 		}
 	}
-
-	/* ===================== EXTRACT ===================== */
 
 	@Override
 	public String extractUserId(String token) {
@@ -77,8 +69,6 @@ public class JwtServiceImpl implements JwtService {
 	public List<String> extractRoles(String token) {
 		return parseClaims(token).get("roles", List.class);
 	}
-
-	/* ===================== INTERNAL ===================== */
 
 	private Claims parseClaims(String token) {
 		return Jwts.parser().verifyWith(getSigningKey()).build().parseSignedClaims(token).getPayload();
