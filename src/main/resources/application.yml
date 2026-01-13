@@ -3,9 +3,9 @@ spring:
         name: order-management-service
 
     datasource:
-        url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
-        username: ${PGUSER}
-        password: ${PGPASSWORD}
+        url: jdbc:postgresql://crossover.proxy.rlwy.net:17164/railway
+        username: postgres
+        password: YasipCIaWCkaKtgGMhMZOlZFfefHjwQg
         driver-class-name: org.postgresql.Driver
 
     jpa:
